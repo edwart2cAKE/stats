@@ -1,0 +1,13 @@
+import pandas as pd
+
+# Load the CSV file
+df = pd.read_csv("id_grade.csv")
+
+# Select 100 people from each grade
+sampled_df = df.groupby('Grade').apply(lambda x: x.sample(n=38, random_state=42)).reset_index(drop=True)
+
+# generate email list
+email_list = sampled_df['Perm ID'].apply(lambda x: f"{x}@lcps.org")
+
+# store email list as text file with
+email_list.to_csv("email_list.txt", index=False, header=False)
