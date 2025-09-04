@@ -3,8 +3,10 @@ import pandas as pd
 # Load the CSV file
 df = pd.read_csv("id_grade.csv")
 
-# Select 100 people from each grade
-sampled_df = df.groupby('Grade').apply(lambda x: x.sample(n=38, random_state=42)).reset_index(drop=True)
+num_people_per_grade = int(input("Enter number of people to select from each grade: "))
+
+# Select the specified number of people from each grade
+sampled_df = df.groupby('Grade').apply(lambda x: x.sample(n=num_people_per_grade)).reset_index(drop=True)
 
 # generate email list
 email_list = sampled_df['Perm ID'].apply(lambda x: f"{x}@lcps.org")
