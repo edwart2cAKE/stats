@@ -1,2 +1,5 @@
 id_grade.csv
 email_list.txt
+.vscode/
+*.pdf
+*.gitignore
