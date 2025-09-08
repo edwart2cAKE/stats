@@ -17,5 +17,10 @@ sampled_df = df.groupby('Grade').apply(lambda x: x.sample(
 # generate email list
 email_list = sampled_df['Perm ID'].apply(lambda x: f"{x}@lcps.org")
 
+# separate emails into groups of 75
+email_groups = [email_list[i:i + 75] for i in range(0, len(email_list), 75)]
+
 # store email list as text file with
-email_list.to_csv("email_list.txt", index=False, header=False)
+with open("email_list.txt", "w") as f:
+    for group in email_groups:
+        f.write("\n".join(group) + "\n\n---------------------\n\n")
