@@ -1,5 +1,5 @@
-id_grade.csv
-email_list.txt
+*.csv
+*.txt
 .vscode/
 *.pdf
 *.gitignore
